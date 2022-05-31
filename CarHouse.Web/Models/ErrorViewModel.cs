@@ -1,4 +1,4 @@
-namespace CarHouse.Models
+namespace CarHouse.Web.Models
 {
     public class ErrorViewModel
     {

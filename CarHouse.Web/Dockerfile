@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["CarHouse/CarHouse.csproj", "CarHouse/"]
-RUN dotnet restore "CarHouse/CarHouse.csproj"
+COPY ["CarHouse.Web/CarHouse.Web.csproj", "CarHouse.Web/"]
+RUN dotnet restore "CarHouse.Web/CarHouse.Web.csproj"
 COPY . .
-WORKDIR "/src/CarHouse"
-RUN dotnet build "CarHouse.csproj" -c Release -o /app/build
+WORKDIR "/src/CarHouse.Web"
+RUN dotnet build "CarHouse.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CarHouse.csproj" -c Release -o /app/publish
+RUN dotnet publish "CarHouse.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CarHouse.dll"]
+ENTRYPOINT ["dotnet", "CarHouse.Web.dll"]

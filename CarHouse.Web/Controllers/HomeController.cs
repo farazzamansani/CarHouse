@@ -1,8 +1,8 @@
-﻿using CarHouse.Models;
+﻿using CarHouse.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CarHouse.Controllers
+namespace CarHouse.Web.Controllers
 {
     public class HomeController : Controller
     {
