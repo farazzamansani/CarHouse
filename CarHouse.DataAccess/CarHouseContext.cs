@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace CarHouse.Database
+namespace CarHouse.DataAccess
 {
     public partial class CarHouseContext : DbContext
     {

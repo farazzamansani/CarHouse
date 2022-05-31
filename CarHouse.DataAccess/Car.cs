@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CarHouse.Database
+namespace CarHouse.DataAccess
 {
     public partial class Car
     {

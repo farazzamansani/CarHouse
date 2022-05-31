@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CarHouse.Database\CarHouse.Database.csproj" />
+    <ProjectReference Include="..\CarHouse.DataAccess\CarHouse.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
