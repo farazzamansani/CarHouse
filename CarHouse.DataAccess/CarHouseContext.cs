@@ -42,6 +42,10 @@ namespace CarHouse.DataAccess
                 entity.Property(e => e.Notes).HasMaxLength(2000);
 
                 entity.Property(e => e.OdometerKm).HasColumnName("OdometerKM");
+
+                entity.Property(e => e.RegistrationNumber)
+                    .HasMaxLength(7)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Customer>(entity =>
