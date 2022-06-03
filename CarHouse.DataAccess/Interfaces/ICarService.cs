@@ -10,6 +10,8 @@ public interface ICarService
     /// <returns></returns>
     IList<Car> GetCars(string? registrationNumber, bool availableCarsOnly);
 
+    public Car GetCarDetails(int id);
+
     /// <summary>
     /// Add a new car to the database
     /// </summary>
@@ -21,7 +23,7 @@ public interface ICarService
     /// <param name="notes"></param>
     /// <param name="AcquiredDate"></param>
     /// <param name="availableFlag"></param>
-    void AddCar(string make, string model, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag);
+    void AddCar(string make, string model, string registration, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag);
 
     /// <summary>
     /// Update an existing car with provided parameters
@@ -35,11 +37,17 @@ public interface ICarService
     /// <param name="notes"></param>
     /// <param name="AcquiredDate"></param>
     /// <param name="availableFlag"></param>
-    void UpdateCar(int id, string make, string model, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag);
+    void UpdateCar(int id, string make, string model, string registration, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag);
 
     /// <summary>
     /// Make a previously sold car available for sale again
     /// </summary>
     /// <param name="id"></param>
     void ReObtainCar(int id);
+
+    /// <summary>
+    /// Delete the car for the specified id
+    /// </summary>
+    /// <param name="id"></param>
+    public void DeleteCar(int id);
 }

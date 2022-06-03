@@ -1,0 +1,48 @@
+﻿@using CarHouse.DataAccess
+
+@{
+    ViewData["Title"] = "Edit Car Details";
+}
+@model Car
+@using (Html.BeginForm("EditCar", "Home",new {id = @Model.CarId},FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>Make: </td>
+            <td><input type="text" name="make" required value=@Model.Make /></td>
+        </tr>
+        <tr>
+            <td>Model: </td>
+            <td><input type="text" name="model" required value=@Model.Model /></td>
+        </tr>
+        <tr>
+            <td>Registration: </td>
+            <td><input type="text" name="registration" required value=@Model.RegistrationNumber /></td>
+        </tr>
+        <tr>
+            <td>Year: </td>
+            <td><input type="number" name="year" required value=@Model.Year /></td>
+        </tr>
+        <tr>
+            <td>Odometer (KM): </td>
+            <td><input type="number" name="odometer" required value=@Model.OdometerKm /></td>
+        </tr>
+        <tr>
+            <td>Advertise Price: </td>
+            <td><input type="number" name="advertisedPrice" required value=@Model.AdvertisedPrice /></td>
+        </tr>
+        <tr>
+            <td>Acquisition Date: </td>
+            <td><input type="datetime-local" name="acquisitionDate" required value=@Model.AcquiredDate.ToString("s") /></td>
+        </tr>
+        <tr>
+            <td>Notes: </td>
+            <td><input type="text" name="notes" value=@Model.Notes /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" class="btn btn-primary" value="Update Car" /></td>
+        </tr>
+    </table>
+}
+
+

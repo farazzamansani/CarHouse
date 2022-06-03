@@ -1,0 +1,43 @@
+﻿<h1>Add Car</h1>
+
+
+@using (Html.BeginForm("AddCar", "Home",FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>Make: </td>
+            <td><input type="text" name="make" required/></td>
+        </tr>
+        <tr>
+            <td>Model: </td>
+            <td><input type="text" name="model" required/></td>
+        </tr>
+        <tr>
+            <td>Registration: </td>
+            <td><input type="text" name="registration" required/></td>
+        </tr>
+        <tr>
+            <td>Year: </td>
+            <td><input type="number" name="year" required/></td>
+        </tr>
+        <tr>
+            <td>Odometer (KM): </td>
+            <td><input type="number" name="odometer" required/></td>
+        </tr>
+        <tr>
+            <td>Advertise Price: </td>
+            <td><input type="number" name="advertisedPrice" required/></td>
+        </tr>
+        <tr>
+            <td>Acquisition Date: </td>
+            <td><input type="datetime-local" name="acquisitionDate" required value=@DateTime.Now.ToString("s") /></td>
+        </tr>
+        <tr>
+            <td>Notes: </td>
+            <td><input type="text" name="notes" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" class="btn btn-primary" value="Save Car" /></td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,25 @@
+﻿@using CarHouse.DataAccess
+
+@{
+    ViewData["Title"] = "Car Details";
+}
+@model Car
+<div class="text-center">
+    <h1 class="display-4">Car Details</h1>
+    <div>@Model.Make</div>
+    <div>@Model.Model</div>
+    @using (Html.BeginForm("EditCarView", "Home",new { id = @Model.CarId},FormMethod.Post))
+    {
+            <button class="btn btn-primary" name="myButton" id="myButton" onclick="AddCar">Edit Car</button>
+    }
+    @using (Html.BeginForm("SellCarView", "Home",new { id = @Model.CarId},FormMethod.Post))
+    {
+        <button class="btn btn-primary" name="myButton" id="myButton" onclick="AddCar">SellCar</button>
+    }
+    @using (Html.BeginForm("DeleteCar", "Home",new { id = @Model.CarId},FormMethod.Post))
+    {
+        <button class="btn btn-primary" name="myButton" id="myButton" onclick="AddCar">Delete Car</button>
+    }
+    </div>
+
+

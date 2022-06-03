@@ -34,6 +34,11 @@ namespace CarHouse.DataAccess.Services
             }
             return cars.ToList();
         }
+
+        public Car GetCarDetails(int id)
+        {
+            return _context.Cars.Single(c => c.CarId == id);
+        }
   
         /// <summary>
         /// Add a new car to the database
@@ -46,12 +51,13 @@ namespace CarHouse.DataAccess.Services
         /// <param name="notes"></param>
         /// <param name="AcquiredDate"></param>
         /// <param name="availableFlag"></param>
-        public void AddCar(string make, string model, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag)
+        public void AddCar(string make, string model,string registration, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag)
         {
             var car = new Car()
             {
                 Make = make,
                 Model = model,
+                RegistrationNumber = registration,
                 Year = year,
                 OdometerKm = odometerKm,
                 AdvertisedPrice = advertisedPrice,
@@ -75,7 +81,7 @@ namespace CarHouse.DataAccess.Services
         /// <param name="notes"></param>
         /// <param name="AcquiredDate"></param>
         /// <param name="availableFlag"></param>
-        public void UpdateCar(int id, string make, string model, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag)
+        public void UpdateCar(int id, string make, string model, string registration, int year, int odometerKm, decimal advertisedPrice, string? notes, DateTimeOffset AcquiredDate, bool availableFlag)
         {
             var car = _context.Cars.Single(c => c.CarId == id);
             car.Make = make;
@@ -97,6 +103,18 @@ namespace CarHouse.DataAccess.Services
         {
             var car = _context.Cars.Single(c => c.CarId == id);
             car.AvailableFlag = true;
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Delete the car for the specified id
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteCar(int id)
+        {
+            var car = _context.Cars.Single(c => c.CarId == id);
+            _context.Cars.Remove(car);
+            _context.SaveChanges();
         }
     }
 }
