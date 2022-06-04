@@ -79,6 +79,18 @@ namespace CarHouse.DataAccess
                 entity.Property(e => e.SaleAmount).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.SalesmanName).HasMaxLength(200);
+
+                entity.HasOne(d => d.Car)
+                    .WithMany(p => p.Sales)
+                    .HasForeignKey(d => d.CarId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_Cars");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Sales)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_Customers");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -11,5 +11,8 @@ namespace CarHouse.DataAccess
         public string SalesmanName { get; set; } = null!;
         public int CarId { get; set; }
         public int CustomerId { get; set; }
+
+        public virtual Car Car { get; set; } = null!;
+        public virtual Customer Customer { get; set; } = null!;
     }
 }
