@@ -21,7 +21,7 @@ namespace CarHouse.DataAccess.Services
         /// <param name="registrationNumber"></param>
         /// <param name="availableCarsOnly"></param>
         /// <returns></returns>
-        public IList<Car> GetCars(string? registrationNumber, bool availableCarsOnly)
+        public IList<Car> GetCars(string? registrationNumber, string? make, string? model,decimal? minPrice, decimal? maxPrice, bool availableCarsOnly)
         {
             IQueryable<Car> cars = _context.Cars;
             if (availableCarsOnly)
@@ -31,6 +31,32 @@ namespace CarHouse.DataAccess.Services
             if (!string.IsNullOrEmpty(registrationNumber))
             {
                 cars = cars.Where(c => c.RegistrationNumber.Contains(registrationNumber));
+            }
+            if (!string.IsNullOrEmpty(make))
+            {
+                cars = cars.Where(c => c.Make.Contains(make));
+            }
+            if (!string.IsNullOrEmpty(model))
+            {
+                cars = cars.Where(c => c.Make.Contains(model));
+            }
+            if (minPrice.HasValue)
+            {
+                cars = cars.Where(c => c.AdvertisedPrice >= minPrice);
+            }
+            if (maxPrice.HasValue)
+            {
+                cars = cars.Where(c => c.AdvertisedPrice <= maxPrice);
+            }
+            return cars.ToList();
+        }
+
+        public IList<Car> GetCars(bool availableCarsOnly)
+        {
+            IQueryable<Car> cars = _context.Cars;
+            if (availableCarsOnly)
+            {
+                cars = cars.Where(c => c.AvailableFlag == true);
             }
             return cars.ToList();
         }

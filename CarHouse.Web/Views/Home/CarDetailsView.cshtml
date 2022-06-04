@@ -10,16 +10,104 @@
     <div>@Model.Model</div>
     @using (Html.BeginForm("EditCarView", "Home",new { id = @Model.CarId},FormMethod.Post))
     {
-            <button class="btn btn-primary" name="myButton" id="myButton" onclick="AddCar">Edit Car</button>
-    }
-    @using (Html.BeginForm("SellCarView", "Home",new { id = @Model.CarId},FormMethod.Post))
-    {
-        <button class="btn btn-primary" name="myButton" id="myButton" onclick="AddCar">SellCar</button>
+            <button class="btn btn-primary" name="myButton" id="myButton" >Edit Car</button>
     }
     @using (Html.BeginForm("DeleteCar", "Home",new { id = @Model.CarId},FormMethod.Post))
     {
-        <button class="btn btn-primary" name="myButton" id="myButton" onclick="AddCar">Delete Car</button>
+        <button class="btn btn-primary" name="myButton" id="myButton" >Delete Car</button>
     }
-    </div>
+    @if (Model.AvailableFlag == false){
+        @using (Html.BeginForm("ReObtainCar", "Home",new { id = @Model.CarId},FormMethod.Post))
+        {
+            <button class="btn btn-primary" name="myButton" id="myButton" >ReObtain Car</button>
+        }
+    }
+    
+    @{  
+    ViewBag.Title = "Car Sale";  
+}  
+  
+<title>@ViewBag.Title</title>  
+  
+
+<div>
+    <fieldset>
+        <div class="container">  
+            <div class="row">  
+                <div class="col-xs-12">  
+  
+                    <button id="btnShowModal" type="button"  
+                            class="btn btn-primary">  
+                        Sell Car 
+                    </button>  
+  
+                    <div class="modal fade" tabindex="-1" id="loginModal"  
+                         data-keyboard="false" data-backdrop="static">  
+                        <div class="modal-dialog modal-lg">  
+                            <div class="modal-content">  
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Sell Car</h4>  
+                                </div>  
+                                <div class="modal-body">  
+                                @using (Html.BeginForm("SellCar", "Home",new { id = @Model.CarId},FormMethod.Post))
+                                {
+                                        <div class="form-group">  
+                                            <h2>Sale Details</h2>
+                                            <input class="form-control" type="number" name="salePrice" value=@Model.AdvertisedPrice required />  
+                                            <input class="form-control" type="text" placeholder="Salesman" name="salesmanName" required />  
+                                        </div>  
+                                        <div>
+                                            <h2>Customer Details</h2>
+                                        </div>
+                                    <div class="form-group">  
+                                        <input class="form-control" type="text"  
+                                               placeholder="FirstName" name="firstName" required />  
+                                        <input class="form-control" type="text"  
+                                               placeholder="LastName" name="lastName" required /> 
+                                        <input class="form-control" type="text"  
+                                               placeholder="Drivers License Number" name="licenseNo" required />  
+                                        <input class="form-control" type="text"  
+                                               placeholder="ContactNumber" name="contactNo" required />  
+                                        <input class="form-control" type="email"  
+                                               placeholder="Email" name="email" required />  
+                                        <input class="form-control" type="text"  
+                                               placeholder="Residential Suburb" name="suburb" required />  
+                                        <input class="form-control" type="text"  
+                                               placeholder="Residential Postcode" name="postCode" required />  
+                                    </div>
+                                    <div class="modal-footer">  
+                                        <button type="submit" class="btn btn-primary">Complete Sale</button>  
+                                        <button type="button" id="btnHideModal" class="btn btn-primary">  
+                                            Cancel
+                                        </button>  
+                                    </div>  
+                                }
+                                </div>  
+                              
+                            </div>  
+                        </div>  
+                    </div>  
+  
+                </div>  
+            </div>  
+        </div>  
+    </fieldset>  
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">  
+    </script>  
+    <script src="bootstrap/js/bootstrap.min.js"></script>  
+  
+    <script type="text/javascript">  
+        $(document).ready(function () {  
+            $("#btnShowModal").click(function () {  
+                $("#loginModal").modal('show');  
+            });  
+  
+            $("#btnHideModal").click(function () {  
+                $("#loginModal").modal('hide');  
+            });  
+        });  
+    </script> 
+</div>
 
 

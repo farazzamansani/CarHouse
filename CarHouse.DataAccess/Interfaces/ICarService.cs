@@ -8,7 +8,15 @@ public interface ICarService
     /// <param name="registrationNumber"></param>
     /// <param name="availableCarsOnly"></param>
     /// <returns></returns>
-    IList<Car> GetCars(string? registrationNumber, bool availableCarsOnly);
+    public IList<Car> GetCars(string? registrationNumber, string? make, string? model, decimal? minPrice,
+        decimal? maxPrice, bool availableCarsOnly);
+
+    /// <summary>
+        /// Return list of all cars
+        /// </summary>
+        /// <param name="availableCarsOnly"></param>
+        /// <returns></returns>
+        public IList<Car> GetCars(bool availableCarsOnly);
 
     public Car GetCarDetails(int id);
 

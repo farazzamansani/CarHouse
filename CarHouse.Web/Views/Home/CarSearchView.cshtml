@@ -6,6 +6,36 @@
 <div class="text-center">
     <h1 class="display-4">Car Search</h1>
 
+                @using (Html.BeginForm("CarSearchView", "Home",  FormMethod.Post))
+                {
+                    <div style="flex: 1">
+                        <td>Search By</td>
+                            <td>Make: </td>
+                            <td><input type="text" name="make" /></td>
+                   
+          
+                            <td>Model: </td>
+                            <td><input type="text" name="model" /></td>
+
+                            <td>Registration: </td>
+                            <td><input type="text" name="registration" /></td>
+
+                            <td>Year: </td>
+                            <td><input type="number" name="year" /></td>
+
+                            <td>Minimum Price: </td>
+                            <td><input type="number" name="minimumPrice" /></td>
+                            <td>Maximum Price: </td>
+                            <td><input type="number" name="maximumPrice" /></td>
+
+                            <td>Available Only:</td>
+                            <input type="checkbox" name="availableOnly" value="true"/>
+
+                        <td colspan="2"><input type="submit" class="btn btn-primary" value="Search"/></td>
+                      
+                    </div>
+                }
+  
         @foreach (var item in @Model)
         {
             <div>Make:@item.Make</div>
