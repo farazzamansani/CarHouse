@@ -3,8 +3,12 @@ using CarHouse.DataAccess;
 using CarHouse.DataAccess.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<CarHouseContext>(options => options.UseSqlServer("Data Source=localhost;Initial Catalog=CarHouse;User ID=sa;Password=Password99;"));
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+    .AddJsonFile("appsettings.json")
+    .Build();
+var connectionString = configuration.GetConnectionString("CarHouseDB");
+builder.Services.AddDbContext<CarHouseContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddTransient<ICarService, CarService>();
 builder.Services.AddTransient<ISaleService, SaleService>();
 // Add services to the container.
