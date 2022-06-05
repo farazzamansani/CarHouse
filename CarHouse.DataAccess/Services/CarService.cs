@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarHouse.DataAccess.Services
 {
@@ -138,7 +139,12 @@ namespace CarHouse.DataAccess.Services
         /// <param name="id"></param>
         public void DeleteCar(int id)
         {
-            var car = _context.Cars.Single(c => c.CarId == id);
+            var car = _context.Cars.Include(c=>c.Sales).Single(c => c.CarId == id);
+
+            //ToDo: Not a good idea deleting cars with sales against them, better to prevent this action or "delete" by toggling a deletion flag on the car table
+            var salesForCar = car.Sales;
+            _context.Sales.RemoveRange(salesForCar);
+
             _context.Cars.Remove(car);
             _context.SaveChanges();
         }

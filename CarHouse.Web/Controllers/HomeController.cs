@@ -22,7 +22,7 @@ namespace CarHouse.Web.Controllers
         {
             var cars = _carService.GetCars(true);
 
-            var carModels = cars.Select(c => new CarModel() { CarId = c.CarId, Make = c.Make, Model = c.Model, AdvertisedPrice = c.AdvertisedPrice, OdometerKm = c.OdometerKm, Year = c.Year}).ToList();
+            var carModels = cars.Select(c => new CarModel() { CarId = c.CarId, Make = c.Make, Model = c.Model, AdvertisedPrice = c.AdvertisedPrice, OdometerKm = c.OdometerKm, Year = c.Year, AvailableFlag = c.AvailableFlag}).ToList();
             
             return View(carModels);
         }
@@ -49,7 +49,7 @@ namespace CarHouse.Web.Controllers
         {
             var cars = _carService.GetCars(registration,make,model,minimumPrice,maximumPrice, availableOnly);
 
-            var carModels = cars.Select(c => new CarModel() { CarId = c.CarId, Make = c.Make, Model = c.Model, AdvertisedPrice = c.AdvertisedPrice, OdometerKm = c.OdometerKm, Year = c.Year }).ToList();
+            var carModels = cars.Select(c => new CarModel() { CarId = c.CarId, Make = c.Make, Model = c.Model, AdvertisedPrice = c.AdvertisedPrice, OdometerKm = c.OdometerKm, Year = c.Year, AvailableFlag = c.AvailableFlag}).ToList();
 
             return View(carModels);
         }
@@ -79,6 +79,8 @@ namespace CarHouse.Web.Controllers
 
         public ActionResult SellCar(int id, int salePrice, string salesmanName, string firstName, string lastName, string licenseNo, string contactNo, string email, string suburb, string postCode )
         {
+            //ToDo: We are making a new customer for every sale, it would be better to implement a UI process to link to an existing/returning customer
+
             var customerId = _saleService.AddCustomer(firstName,lastName,licenseNo, contactNo,email,suburb,postCode);
             _saleService.SellCar(id,salePrice,customerId,salesmanName);
             return RedirectToAction("CarDetailsView",new {id = id});

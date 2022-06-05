@@ -1,32 +1,45 @@
-﻿<h1>Add Car</h1>
-
+﻿<style>
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h2 {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    input {
+        width: 100%;
+    }
+</style>
+<h2>Add Car</h2>
 
 @using (Html.BeginForm("AddCar", "Home",FormMethod.Post))
 {
     <table>
         <tr>
             <td>Make: </td>
-            <td><input type="text" name="make" required/></td>
+            <td><input type="text" placeholder="Make" name="make" required/></td>
         </tr>
         <tr>
             <td>Model: </td>
-            <td><input type="text" name="model" required/></td>
+            <td><input type="text" placeholder="Model" name="model" required/></td>
         </tr>
         <tr>
             <td>Registration: </td>
-            <td><input type="text" name="registration" required/></td>
+            <td><input type="text" placeholder="Registration" name="registration" required/></td>
         </tr>
         <tr>
             <td>Year: </td>
-            <td><input type="number" name="year" required/></td>
+            <td><input type="number" placeholder="Year" name="year" required/></td>
         </tr>
         <tr>
             <td>Odometer (KM): </td>
-            <td><input type="number" name="odometer" required/></td>
+            <td><input type="number" placeholder="Odometer" name="odometer" required/></td>
         </tr>
         <tr>
             <td>Advertise Price: </td>
-            <td><input type="number" name="advertisedPrice" required/></td>
+            <td><input type="number" placeholder="Advertised Price" name="advertisedPrice" required/></td>
         </tr>
         <tr>
             <td>Acquisition Date: </td>
@@ -34,7 +47,7 @@
         </tr>
         <tr>
             <td>Notes: </td>
-            <td><input type="text" name="notes" /></td>
+            <td><input type="text" name="notes" placeholder="Notes" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" class="btn btn-primary" value="Save Car" /></td>

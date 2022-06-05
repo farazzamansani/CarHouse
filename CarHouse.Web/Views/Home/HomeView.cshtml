@@ -1,28 +1,31 @@
-﻿@using CarHouse.DataAccess
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 @model List<CarModel>
+<style>
+
+</style>
 <div class="text-center">
-    <h1 class="display-4">Welcome to Car House</h1>
+    <h1 >Welcome to Car House</h1>
  
       @using (Html.BeginForm("AddCarView", "Home", FormMethod.Post))
     {
-            <button class="btn btn-primary" name="myButton" id="myButton" >Add Car</button>
+            <button class="btn btn-primary" name="myButton" id="myButton" ><span class="fas fa-plus" aria-hidden="true"/> Add Car</button>
     }
-    
-        @foreach (var item in @Model)
-        {
-            <div>Make:@item.Make</div>
-            <div>Model:@item.Model</div>
-            <div>Price:@item.AdvertisedPrice</div>
-            <div>KM:@item.OdometerKm</div>
-            <div>Year:@item.Year</div>
-            @using (Html.BeginForm("CarDetailsView", "Home",
-               new { id = @item.CarId}, FormMethod.Post))
-            {
-                <button class="btn btn-primary" name="myButton" id="myButton" value=@item.CarId >Car Details</button>
-            }
-        }
+
+          @foreach (var item in @Model)
+          {
+              @using (Html.BeginForm("CarDetailsView", "Home",
+                  new { id = @item.CarId }, FormMethod.Post))
+              {
+                  <button class="btn item" style="width:50%">
+                          <h2>@item.Year @item.Make @item.Model</h2>
+                         
+                          <div style="flex-direction: row">
+                              <p><span class="title">Price:</span>@item.AdvertisedPrice <span class="title">KM:</span>@item.OdometerKm</p>
+                          </div>
+                      </button>
+              }
+          }
 
 </div>

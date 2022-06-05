@@ -72,8 +72,6 @@ namespace CarHouse.DataAccess
 
             modelBuilder.Entity<Sale>(entity =>
             {
-                entity.Property(e => e.SaleId).ValueGeneratedNever();
-
                 entity.Property(e => e.AdvertisedPrice).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.SaleAmount).HasColumnType("decimal(10, 2)");

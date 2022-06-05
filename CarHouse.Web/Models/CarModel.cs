@@ -8,5 +8,7 @@
         public int Year { get; set; }
         public int OdometerKm { get; set; }
         public decimal AdvertisedPrice { get; set; }
+
+        public bool AvailableFlag { get; set; }
     }
 }
